@@ -6,11 +6,25 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/layout/home' // 直接重定向到home
   },
   {
     path: '/login',
     component: () => import('@/views/Login')
+  },
+  {
+    path: '/layout',
+    component: () => import('@/views/layout'),
+    children: [
+      {
+        path: 'home',
+        component: () => import('@/views/Home')
+      },
+      {
+        path: 'user',
+        component: () => import('@/views/User')
+      }
+    ]
   }
 ]
 

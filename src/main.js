@@ -10,12 +10,20 @@ import API from './api'
 // 引入初始化css
 import './styles/normalize.css'
 // 按需引入vant组件
-import { NavBar, Form, Field, Button } from 'vant'
+import { NavBar, Form, Field, Button, Tabbar, TabbarItem, Icon, Tab, Tabs, Cell, List, PullRefresh } from 'vant'
 
 Vue.use(NavBar)
 Vue.use(Form)
 Vue.use(Field)
 Vue.use(Button)
+Vue.use(Tabbar)
+Vue.use(TabbarItem)
+Vue.use(Icon)
+Vue.use(Tab)
+Vue.use(Tabs)
+Vue.use(Cell)
+Vue.use(List)
+Vue.use(PullRefresh)
 
 Vue.config.productionTip = false
 Vue.prototype.$API = API
