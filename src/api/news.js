@@ -29,3 +29,23 @@ export const reqReports = (target, type, remark) => request({
     remark
   }
 })
+
+// 获取新闻详情
+export const reqArticleDetail = (artId) => request({
+  url: `/v1_0/articles/${artId}`
+})
+
+// 对新闻点赞
+export const reqLike = (artId) => request({
+  url: '/v1_0/article/likings',
+  method: 'post',
+  data: {
+    target: artId
+  }
+})
+
+// 对新闻取消点赞
+export const reqCancelLike = (artId) => request({
+  url: `/v1_0/article/likings/${artId}`,
+  method: 'delete'
+})

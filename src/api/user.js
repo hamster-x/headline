@@ -7,3 +7,18 @@ export const reqLogin = (user) => request({
   method: 'post',
   data: user
 })
+
+// 关注用户
+export const reqFollow = (target) => request({
+  url: '/v1_0/user/followings',
+  method: 'post',
+  data: {
+    target
+  }
+})
+
+// 取消关注用户
+export const reqCancelFollow = (target) => request({
+  url: `/v1_0/user/followings/${target}`,
+  method: 'delete'
+})

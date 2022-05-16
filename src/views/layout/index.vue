@@ -3,7 +3,7 @@
 <!--  二级路由-->
    <div class="home_container">
   <!-- 二级路由页面 -->
-  <router-view></router-view>
+       <router-view></router-view>
 </div>
 <!--  底部导航-->
   <van-tabbar v-model="active">

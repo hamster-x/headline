@@ -12,3 +12,12 @@ export const reqUserChannels = () => request({
   url: '/v1_0/user/channels',
   method: 'get'
 })
+
+// 更新覆盖频道
+export const reqUpdateChannel = (channels) => request({
+  url: '/v1_0/user/channels',
+  method: 'put',
+  data: {
+    channels
+  }
+})

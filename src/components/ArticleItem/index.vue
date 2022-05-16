@@ -1,6 +1,6 @@
 <template>
   <!-- 一条文章单元格 -->
-  <div>
+  <div @click="$emit('click')">
     <van-cell>
       <!-- 标题区域的插槽 -->
       <template #title>
@@ -24,7 +24,7 @@
             <span>{{formatTime(news.pubdate)}}</span>
           </div>
           <!-- 反馈按钮 -->
-          <van-icon name="cross" @click="show = true"/>
+          <van-icon v-if="$route.path === '/layout/home'" name="cross" @click.stop="show = true"/>
         </div>
       </template>
     </van-cell>

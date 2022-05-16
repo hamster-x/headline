@@ -9,14 +9,14 @@
     :immediate-check="false"
     offset="30"
   >
-  <ArticleItem v-for="(news,index) in newsList" :key="index" :news="news"></ArticleItem>
+  <ArticleItem @click="toArticleDetail(news)" v-for="(news,index) in newsList" :key="index" :news="news"></ArticleItem>
     </van-list>
   </van-pull-refresh>
 </div>
 </template>
 
 <script>
-import ArticleItem from './ArticleItem'
+import ArticleItem from '@/components/ArticleItem'
 import { Notify } from 'vant'
 export default {
   name: 'ArticleList',
@@ -60,6 +60,10 @@ export default {
       }
     },
     onLoad () {
+      if (this.newsList.length === 0) {
+        this.loading = false
+        return
+      }
       // 上拉加载的事件
       // 发送请求 获取数据
       this.getArticles(this.active, this.preTimestamp)
@@ -70,6 +74,10 @@ export default {
       // 原先的列表清空
       this.newsList = []
       this.getArticles(this.active, this.preTimestamp)
+    },
+    // 跳转新闻详情页
+    toArticleDetail (news) {
+      this.$router.push(`/article_detail?art_id=${news.art_id}`)
     }
   }
 }

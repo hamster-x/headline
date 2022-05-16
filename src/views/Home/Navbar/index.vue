@@ -5,7 +5,7 @@
       <span style="color: white;margin-top: 3px">头条</span>
     </template>
     <template #right >
-      <van-icon name="search" size="0.48rem" color="#fff"/>
+      <van-icon name="search" size="0.48rem" @click="$router.push('/search')" color="#fff"/>
     </template>
   </van-nav-bar>
 </template>
