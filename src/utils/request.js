@@ -2,7 +2,7 @@
 import axios from 'axios'
 import router from '@/router'
 import { Notify } from 'vant'
-import { getToken } from '@/utils/token'
+import { getToken, removeToken } from '@/utils/token'
 
 const request = axios.create({
   baseURL: 'http://toutiao.itheima.net/',
@@ -32,6 +32,8 @@ request.interceptors.response.use(function (response) {
   if (error.response.status === 401) {
     // token过期 强制跳转登录页面
     Notify({ type: 'warning', message: '登录信息失效' })
+    // 清除本地token
+    removeToken()
     router.replace('/login')
   }
   return Promise.reject(error)

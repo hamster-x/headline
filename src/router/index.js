@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { getToken } from '@/utils/token'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,14 @@ const routes = [
   {
     path: '/article_detail',
     component: () => import('@/views/ArticleDetail')
+  },
+  {
+    path: '/user_edit',
+    component: () => import('@/views/UserEdit')
+  },
+  {
+    path: '/chat',
+    component: () => import('@/views/Chat')
   }
 ]
 
@@ -45,4 +54,12 @@ const router = new VueRouter({
   routes
 })
 
+// 路由 全局前置守卫(在路由发生真正跳转之前，执行此函数)
+router.beforeEach((to, form, next) => {
+  if (getToken() && to.path === '/login') {
+    next(false)
+  } else {
+    next()
+  }
+})
 export default router
