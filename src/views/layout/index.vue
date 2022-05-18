@@ -3,7 +3,9 @@
 <!--  二级路由-->
    <div class="home_container">
   <!-- 二级路由页面 -->
+     <keep-alive>
        <router-view></router-view>
+     </keep-alive>
 </div>
 <!--  底部导航-->
   <van-tabbar v-model="active">
@@ -20,6 +22,11 @@ export default {
     return {
       active: 0
     }
+  },
+  mounted () {
+    this.$bus.$on('setActive', (active) => {
+      this.active = active
+    })
   }
 }
 </script>

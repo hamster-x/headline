@@ -3,7 +3,7 @@
 <!--  顶部的tab栏-->
   <van-tabs v-model="active" sticky animated offset-top="1.226667rem" >
     <van-tab v-for="channel in channelUserList" :key="channel.id" :title="channel.name">
-      <ArticleList :active="active"></ArticleList>
+      <ArticleList :active="active"  ></ArticleList>
     </van-tab>
   </van-tabs>
   <!-- 编辑频道图标 -->
@@ -18,7 +18,7 @@
 <script>
 import ArticleList from './ArticleList'
 import ChannelEdit from '../ChannelEdit'
-import { Notify } from 'vant'
+import Notify from '@/ui/Notify'
 export default {
   name: 'Tab',
   components: { ArticleList, ChannelEdit },

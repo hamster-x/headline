@@ -19,7 +19,10 @@ const routes = [
     children: [
       {
         path: 'home',
-        component: () => import('@/views/Home')
+        component: () => import('@/views/Home'),
+        meta: {
+          scrollT: 0 // 记录滚动条的位置
+        }
       },
       {
         path: 'user',
@@ -57,7 +60,8 @@ const router = new VueRouter({
 // 路由 全局前置守卫(在路由发生真正跳转之前，执行此函数)
 router.beforeEach((to, form, next) => {
   if (getToken() && to.path === '/login') {
-    next(false)
+    // next(false)
+    next('/layout/home')
   } else {
     next()
   }

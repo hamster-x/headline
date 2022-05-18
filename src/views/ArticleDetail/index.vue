@@ -1,5 +1,9 @@
 <template>
   <div>
+    <!--    加载动画-->
+    <van-loading v-if="Object.keys(articleDetail).length === 0" type="spinner" vertical color="#1989fa" size="24">拼命加载中</van-loading>
+
+  <div v-else>
     <!-- Header 区域 -->
     <van-nav-bar fixed title="文章详情" left-arrow @click-left="$router.back()" />
 
@@ -37,8 +41,10 @@
       </div>
     </div>
 
-<!--    评论区域-->
+    <!--    评论区域-->
     <CommentList></CommentList>
+  </div>
+
   </div>
 </template>
 
@@ -146,5 +152,11 @@ export default {
 .like-box {
   display: flex;
   justify-content: center;
+}
+// 加载中的样式
+.van-loading {
+  z-index: 999;
+  top: 46px;
+  text-align: center;
 }
 </style>

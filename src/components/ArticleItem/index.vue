@@ -8,11 +8,11 @@
           <!-- 标题 -->
           <span>{{ news.title }}</span>
           <!--        显示一张图片的时候-->
-          <img class="thumb"  v-if="news.cover.type === 1"  :src="news.cover.images[0]" alt="">
+          <img class="thumb" v-lazy="news.cover.images[0]"  v-if="news.cover.type === 1"   alt="">
         </div>
         <!--      显示多张图片的时候-->
         <div class="thumb-box" v-if="news.cover.type > 1">
-          <img class="thumb"  v-for="(img,index) in news.cover.images" :key="index" :src="img" alt="">
+          <img class="thumb" v-lazy="img"  v-for="(img,index) in news.cover.images" :key="index"  alt="">
         </div>
       </template>
       <!-- label 区域的插槽 -->
@@ -42,7 +42,7 @@
 
 import { timeAgo } from '@/utils/date'
 import { firstActions, secondActions } from '@/api/report'
-import { Notify } from 'vant'
+import Notify from '@/ui/Notify'
 
 export default {
   name: 'ArticleItem',

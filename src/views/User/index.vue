@@ -6,7 +6,7 @@
       <van-cell>
         <!-- 使用 title 插槽来自定义标题 -->
         <template #icon>
-          <img :src="userInfo.photo" alt="" class="avatar">
+          <img :src="$store.state.userPhoto" alt="" class="avatar">
         </template>
         <template #title>
           <span class="username">{{userInfo.name}}</span>
@@ -44,6 +44,7 @@
 <script>
 import { Dialog } from 'vant'
 import { removeToken } from '@/utils/token'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'User',
@@ -52,16 +53,17 @@ export default {
       userInfo: {} // 存储用户的信息
     }
   },
-  mounted () {
+  created () {
     this.getUserInfo()
   },
   methods: {
+    ...mapMutations(['SET_USER_PHOTO']),
     async getUserInfo () {
       const result = await this.$API.user.reqUserInfo()
       if (result.status === 200) {
         this.userInfo = result.data.data
         // vuex存储用户头像
-        this.$store.commit('SET_USER_PHOTO', result.data.data.photo)
+        this.SET_USER_PHOTO(result.data.data.photo)
       }
     },
     // 退出登录的回调

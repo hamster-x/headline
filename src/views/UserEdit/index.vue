@@ -39,7 +39,8 @@
 </template>
 
 <script>
-import { Notify } from 'vant'
+import { mapMutations } from 'vuex'
+import Notify from '@/ui/Notify'
 import dayjs from 'dayjs'
 export default {
   name: 'UserEdit',
@@ -58,6 +59,7 @@ export default {
     this.getUserProfile()
   },
   methods: {
+    ...mapMutations(['SET_USER_PHOTO']),
     async getUserProfile () {
       const result = await this.$API.user.reqUserProfile()
       if (result.status === 200) {
@@ -74,6 +76,7 @@ export default {
       const result = await this.$API.user.reqUpdatePhoto(theFormObj)
       if (result.status === 200) {
         this.userProfile.photo = result.data.data.photo
+        this.SET_USER_PHOTO(result.data.data.photo)
       }
     },
     // 点击图片的回调函数

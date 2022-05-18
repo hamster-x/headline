@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Notify } from 'vant'
+import Notify from '@/ui/Notify'
 import { setToken } from '@/utils/token'
 
 export default {
@@ -41,6 +41,9 @@ export default {
           this.isLoading = false
           // 本地存储token
           setToken(result.data.data.token)
+          localStorage.setItem('refresh_token', result.data.data.refresh_token)
+          // 触发自定义事件 更改layout的active为首页
+          this.$bus.$emit('setActive', 0)
           // 路由跳转
           this.$router.replace({
             path: '/layout/home'

@@ -17,13 +17,16 @@
 
 <script>
 import ArticleItem from '@/components/ArticleItem'
-import { Notify } from 'vant'
+import Notify from '@/ui/Notify'
 export default {
   name: 'ArticleList',
   components: { ArticleItem },
   props: {
     active: {
       type: Number
+    },
+    channel: {
+      type: Object
     }
   },
   data () {

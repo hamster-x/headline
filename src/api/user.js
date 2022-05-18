@@ -68,3 +68,12 @@ export const reqEditUserProfile = (dataObj) => {
     data: obj
   })
 }
+
+// 刷新用户token
+export const reqNewToken = () => request({
+  url: '/v1_0/authorizations',
+  method: 'put',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('refresh_token')}`
+  }
+})
